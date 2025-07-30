@@ -47,14 +47,20 @@ defmodule Quest01 do
 
   defp triple_cost(t) do
     case t do
-      [a,a,a] -> enemy_cost(a)*3
-      [a,b,c] -> 2+enemy_cost(a)+enemy_cost(b)+enemy_cost(c)
+      [?x,?x,a] -> enemy_cost(a)
+      [?x,a,?x] -> enemy_cost(a)
+      [a,?x,?x] -> enemy_cost(a)
+      [a,b,?x] -> 2+enemy_cost(a)+enemy_cost(b)
+      [a,?x,b] -> 2+enemy_cost(a)+enemy_cost(b)
+      [?x,a,b] -> 2+enemy_cost(a)+enemy_cost(b)
+      [a,a,a] -> (2+enemy_cost(a))*3
+      [a,b,c] -> 6+enemy_cost(a)+enemy_cost(b)+enemy_cost(c)
       [x] -> enemy_cost(x)
       [] -> 0
     end
   end
 
-  # Private helper to get the base cost of a single enemy.
+  # Private helpers to get the base cost of a single enemy.
   defp enemy_cost(?A), do: 0
   defp enemy_cost(?B), do: 1
   defp enemy_cost(?C), do: 3
