@@ -18,12 +18,21 @@ defmodule Quest01 do
     |> Enum.sum()
   end
 
+  def part3(input) do
+    input
+    |> String.to_charlist()
+    |> Enum.chunk_every(3)
+    |> Enum.map(&triple_cost/1)
+    |> Enum.sum()
+  end
+
   defp pair_cost(pair) do
     case pair do
-      [enemy, enemy] ->
-        2 + enemy_cost(enemy) * 2
       [?x, enemy] -> enemy_cost(enemy)
       [enemy,?x] -> enemy_cost(enemy)
+
+      [enemy, enemy] ->
+        2 + enemy_cost(enemy) * 2
 
       [enemy1, enemy2] ->
         enemy_cost(enemy1) + enemy_cost(enemy2) + 2
@@ -33,6 +42,15 @@ defmodule Quest01 do
       # Should not happen with valid input, but good to have a default.
       [] ->
         0
+    end
+  end
+
+  defp triple_cost(t) do
+    case t do
+      [a,a,a] -> enemy_cost(a)*3
+      [a,b,c] -> 2+enemy_cost(a)+enemy_cost(b)+enemy_cost(c)
+      [x] -> enemy_cost(x)
+      [] -> 0
     end
   end
 
@@ -51,5 +69,8 @@ defmodule Quest01 do
 
     {:ok, input2} = File.read("input2.txt")
     IO.puts("Part2: #{part2(input2)}")
+
+    {:ok, input3} = File.read("input3.txt")
+    IO.puts("Part2: #{part3(input3)}")
   end
 end

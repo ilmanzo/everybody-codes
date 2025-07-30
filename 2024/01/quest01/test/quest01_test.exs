@@ -8,4 +8,8 @@ defmodule Quest01Test do
   test "part2" do
     assert Quest01.part2("AxBCDDCAxD") == 28
   end
+
+  test "part3" do
+    assert Quest01.part3("xBxAAABCDxCC") == 30
+  end
 end
