@@ -1,4 +1,5 @@
-stamps=[1, 3, 5, 10].freeze
+#stamps=[1, 3, 5, 10].freeze
+stamps= [1, 3, 5, 10, 15, 16, 20, 24, 25, 30].freeze
 
 
 def min_stamps(stamps, amount)
