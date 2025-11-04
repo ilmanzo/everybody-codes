@@ -1,0 +1,3 @@
+Norakvyr,Brivgalor,Rynryn,Eadendris,Brelvel,Zyrixmal,Ylaraelor,Quirynn,Qyraxaril,Voraxsin,Vornlorath,Darthar,Durnzar,Aurebryn,Qyracarth,Urakonar,Rylarmyr,Wyrgaz,Ulmarvyr,Eryoris,Skarsin,Galilor,Erasvalir,Eltrovan,Thazdravor,Havdrith,Agnaryth,Krythadir,Quenfeth,Vanzyth
+
+L32,R15,L45,R31,L27,R6,L22,R8,L19,R7,L41,R47,L32,R31,L5,R13,L35,R9,L48,R11,L5,R14,L5,R40,L5,R21,L5,R25,L5,R21,L5,R22,L5,R19,L5,R7,L5,R5,L5,R28,L16,R23,L38,R32,L49,R30,L12,R46,L7,R15,L43,R42,L6,R49,L38,R18,L29,R21,L21
