@@ -13,20 +13,13 @@ long numBlocksUsed(long length, const long[] blocks) => blocks.map!(c => length 
 long[] extractBlocks(long[] cols)
 {
     long[] blocks;
-    // Iterate through potential charms (1 to number of columns)
     foreach (block; 1 .. cols.length + 1)
     {
-        // Define the stride range (0-based index equivalent to python's charm-1)
         auto indices = iota(block - 1, cols.length, block);
-
-        // If all columns in the stride have blocks remaining
         if (indices.all!(i => cols[i] > 0))
         {
-            // Decrement those columns
             foreach (i; indices)
-            {
                 cols[i]--;
-            }
             blocks ~= block;
         }
     }
