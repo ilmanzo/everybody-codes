@@ -5,7 +5,6 @@ import std.conv;
 import std.algorithm;
 import std.range;
 import std.array;
-import std.bigint;
 
 long[] loadInput(string filename) => readText(filename).strip.split(',').map!(to!long).array;
 long numBlocksUsed(long length, const long[] blocks) => blocks.map!(c => length / c).sum;
@@ -33,8 +32,8 @@ void main()
     {
         auto cols = "input2.txt".loadInput();
         auto blocks = cols.extractBlocks;
-        auto result = blocks.map!(a => BigInt(a))
-            .fold!((a, b) => a * b)(BigInt(1));
+        auto result = blocks.map!(a => cast(ulong) a)
+            .fold!((a, b) => a * b)(cast(ulong) 1);
         writeln("Part 2: ", result);
     }
 
