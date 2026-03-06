@@ -108,6 +108,7 @@ defmodule Q3 do
   end
 
   def traverse(nil, acc), do: acc
+
   def traverse(node, acc) do
     traverse(node.left, [node.id | traverse(node.right, acc)])
   end
