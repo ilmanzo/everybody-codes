@@ -1,17 +1,9 @@
 defmodule Q3 do
-  defmodule Connector do
-    defstruct [:color, :shape]
-  end
-
-  defmodule Node do
-    defstruct [:id, :plug, :left_socket, :right_socket, :left, :right]
-  end
-
-  def match_both?(%Connector{color: c, shape: s}, %Connector{color: c, shape: s}), do: true
+  def match_both?(%{color: c, shape: s}, %{color: c, shape: s}), do: true
   def match_both?(_, _), do: false
 
-  def match_one?(%Connector{color: c}, %Connector{color: c}), do: true
-  def match_one?(%Connector{shape: s}, %Connector{shape: s}), do: true
+  def match_one?(%{color: c}, %{color: c}), do: true
+  def match_one?(%{shape: s}, %{shape: s}), do: true
   def match_one?(_, _), do: false
 
   def parse_line(line) do
@@ -20,16 +12,18 @@ defmodule Q3 do
     parse_conn = fn str ->
       [_, val] = String.split(str, "=")
       [c, s] = String.split(val, " ")
-      %Connector{color: String.to_atom(c), shape: String.to_atom(s)}
+      %{color: String.to_atom(c), shape: String.to_atom(s)}
     end
 
     [_, id_str] = String.split(id_part, "=")
 
-    %Node{
+    %{
       id: String.to_integer(id_str),
       plug: parse_conn.(plug_part),
       left_socket: parse_conn.(left_part),
-      right_socket: parse_conn.(right_part)
+      right_socket: parse_conn.(right_part),
+      left: nil,
+      right: nil
     }
   end
 
@@ -145,18 +139,8 @@ defmodule Q3 do
         end
       end)
 
-    result =
-      traverse(tree, [])
-      |> Enum.with_index(1)
-      |> Enum.reduce(0, fn {id, idx}, acc -> acc + id * idx end)
-
-    IO.puts(result)
+    traverse(tree, [])
+    |> Enum.with_index(1)
+    |> Enum.reduce(0, fn {id, idx}, acc -> acc + id * idx end)
   end
 end
-
-#Q3.solve("samplea.txt", :p1)
-Q3.solve("inputa.txt", :p1)
-#Q3.solve("sampleb.txt", :p2)
-Q3.solve("inputb.txt", :p2)
-#Q3.solve("samplec.txt", :p3)
-Q3.solve("inputc.txt", :p3)
